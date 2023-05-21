@@ -22,15 +22,13 @@
 
 <body class="" onload="callAll()" style = "font-family: Montserrat; background-color: black;">
     <div id="app">
-        <!-- <button type="button" onclick="getTopTracksResults()"
-            class="text-white bg-blue-700 hover:bg-blue-800 focus:outline-none focus:ring-4 focus:ring-blue-300 font-medium rounded-full text-sm px-5 py-2.5 text-center mr-2 mb-2">Default</button> -->
         <div class="mt-4 flex items-center justify-center">
             <iconify-icon icon="logos:spotify" width="130" height="130"></iconify-icon>
             <h2 class="text-4xl font-bold text-white ml-2">Helper</h2>
         </div>
 
-        <!-- CARDS -->
-        <div class="mx-8 my-2 relative overflow-x-auto shadow-md sm:rounded-lg bg-slate-600">
+        <!-- TABLE 1: TOP TRACKS -->
+        <div class="mx-8  mb-6 relative overflow-x-auto shadow-md sm:rounded-lg bg-slate-600">
             <table class="w-full text-sm text-left text-gray-500 bg-slate-600">
                 <caption
                     class="p-5 text-lg font-semibold text-left text-gray-900 bg-white dark:text-white dark:bg-gray-800">
@@ -65,7 +63,47 @@
             </table>
         </div>
 
-        <!-- <img src = "https://i.scdn.co/image/ab67616d0000b2731df535f5089e544a3cc86069" style = "width: 50px; height: 50px;"> -->
+        <!-- TABLE 2: RECOMMEND TRACKS -->
+        <div class="mx-8 my-6 relative overflow-x-auto shadow-md sm:rounded-lg bg-slate-600">
+            <table class="w-full text-sm text-left text-gray-500 bg-slate-600">
+                <caption
+                    class="pt-5 px-5 pb-2 text-lg font-semibold text-left text-gray-900 bg-white dark:text-white dark:bg-gray-800">
+                    Top Recommendations
+                    <p class="mt-1 mb-2 text-sm font-normal text-gray-500">Browse a list of your recommended trackes based on your top tracks <span
+                            style="color: #1DB954;">Spotify</span></p>
+                    <span>
+                        <button type="button" onclick = "getRecommendationResults()" class="text-white bg-green-500 hover:bg-green-800 focus:outline-none focus:ring-4 focus:ring-green-300 font-medium rounded-full text-sm px-5 py-2.5 text-center mr-2"><iconify-icon icon="ic:baseline-refresh" width="18" height="18"></iconify-icon></button>
+                        <button type="button" onclick = "createPlaylistResult()" class="text-white bg-green-500 hover:bg-green-800 focus:outline-none focus:ring-4 focus:ring-green-300 font-medium rounded-full text-sm px-5 py-2.5 text-center mr-2 mb-2">Save Playlist</button>
+                    </span>
+                    </caption>
+                <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 ">
+                    <tr>
+                        <th scope="col" class="px-6 py-3">
+                            Rank
+                        </th>
+                        <th scope="col" class="px-6 py-3">
+                            Song
+                        </th>
+                        <th scope="col" class="px-6 py-3">
+                            Artist Name
+                        </th>
+                        <th scope="col" class="px-6 py-3">
+                            Album
+                        </th>
+                        <th scope="col" class="px-6 py-3">
+                            Album Image
+                        </th>
+                        <th scope="col" class="px-6 py-3">
+                            Link
+                        </th>
+                    </tr>
+                </thead>
+                <tbody id="topRecommendation">
+                </tbody>
+                
+            </table>
+        </div>
+
 
 
     </div>
