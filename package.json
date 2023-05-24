@@ -1,0 +1,27 @@
+{
+  "name": "spotify-remake",
+  "version": "1.0.0",
+  "description": "A Spotify remake with features that Spotify do not have or may have",
+  "main": "app.js",
+  "dependencies": {
+    "buffer": "^6.0.3",
+    "express": "^4.18.2",
+    "request": "^2.88.2",
+    "spotify-web-api-node": "^5.0.2"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/dracolim/spotify-remake.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/dracolim/spotify-remake/issues"
+  },
+  "homepage": "https://github.com/dracolim/spotify-remake#readme"
+}
