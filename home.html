@@ -18,146 +18,242 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500&display=swap" rel="stylesheet">
 
+    <script src="back.js"></script>
+
+    <style>
+        .btn {
+            position: absolute;
+            top: 65%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            -ms-transform: translate(-50%, -50%);
+            background-color: #555;
+            color: white;
+            font-size: 16px;
+            padding: 12px 24px;
+            border: none;
+            cursor: pointer;
+            border-radius: 5px;
+        }
+
+        /* carousel (first slide) */
+        .top-left {
+            position: absolute;
+            top: 30%;
+            left: 10%;
+            color: white;
+            font-size: 30px;
+            font-weight: bold;
+        }
+
+        .top-left-down {
+            position: absolute;
+            top: 39%;
+            left: 10%;
+            color: white;
+            font-size: 30px;
+            font-weight: bold;
+        }
+    </style>
+
 </head>
 
 <body class="" onload="callAll()" style="font-family: Montserrat; background-color: black;">
-    <div id="app">
-        <div class="mt-4 flex items-center justify-center">
-            <iconify-icon icon="logos:spotify" width="130" height="130"></iconify-icon>
-            <h2 class="text-4xl font-bold text-white ml-2">Helper</h2>
-        </div>
 
-        <!-- TABLE 1: TOP TRACKS -->
-        <div class="mx-12 mb-6 relative overflow-x-auto shadow-md sm:rounded-lg bg-slate-600">
-            <table class="w-full text-sm text-left text-gray-500 bg-slate-600">
-                <caption
-                    class="p-5 text-lg font-semibold text-left text-gray-900 bg-white">
-                    Top Tracks
-                    <p class="mt-1 text-sm font-normal text-gray-500">Browse a list of your top tracks in <span
-                            style="color: #1DB954;">Spotify</span></p>
-                </caption>
-                <thead class="text-xs text-gray-700 uppercase bg-gray-50">
-                    <tr>
-                        <th scope="col" class="px-6 py-3">
-                            Rank
-                        </th>
-                        <th scope="col" class="px-6 py-3">
-                            Song
-                        </th>
-                        <th scope="col" class="px-6 py-3">
-                            Artist Name
-                        </th>
-                        <th scope="col" class="px-6 py-3">
-                            Album
-                        </th>
-                        <th scope="col" class="px-6 py-3">
-                            Album Image
-                        </th>
-                        <th scope="col" class="px-6 py-3">
-                            Link
-                        </th>
-                    </tr>
-                </thead>
-                <tbody id="topTrack">
-                </tbody>
-            </table>
-        </div>
+    <div class="mt-4 flex items-center justify-center">
+        <iconify-icon icon="logos:spotify" width="130" height="130"></iconify-icon>
+        <h2 class="text-4xl font-bold text-white ml-2">Helper</h2>
+    </div>
 
-        <!-- TABLE 2: RECOMMEND TRACKS -->
-        <div class="mx-12 my-6 relative overflow-x-auto shadow-md sm:rounded-lg bg-slate-600">
-            <table class="w-full text-sm text-left text-gray-500 bg-slate-600">
-                <caption
-                    class="pt-5 px-5 pb-2 text-lg font-semibold text-left text-gray-900 bg-white">
-                    Top Recommendations
-                    <p class="mt-1 mb-2 text-sm font-normal text-gray-500">Browse a list of your recommended trackes
-                        based on your top tracks <span style="color: #1DB954;">Spotify</span></p>
-                    <span>
-                        <button type="button" onclick="getRecommendationResults()"
-                            class="text-white bg-green-500 hover:bg-green-800 focus:outline-none focus:ring-4 focus:ring-green-300 font-medium rounded-full text-sm px-5 py-2.5 text-center mr-2">
-                            <iconify-icon icon="ic:baseline-refresh" width="18" height="18"></iconify-icon>
-                        </button>
-                        <button type="button" data-modal-target="authentication-modal"
-                            data-modal-toggle="authentication-modal"
-                            class="text-white bg-green-500 hover:bg-green-800 focus:outline-none focus:ring-4 focus:ring-green-300 font-medium rounded-full text-sm px-5 py-2.5 text-center mr-2 mb-2">Save
-                            Playlist</button>
-                    </span>
-                </caption>
-                <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 ">
-                    <tr>
-                        <th scope="col" class="px-6 py-3">
-                            Rank
-                        </th>
-                        <th scope="col" class="px-6 py-3">
-                            Song
-                        </th>
-                        <th scope="col" class="px-6 py-3">
-                            Artist Name
-                        </th>
-                        <th scope="col" class="px-6 py-3">
-                            Album
-                        </th>
-                        <th scope="col" class="px-6 py-3">
-                            Album Image
-                        </th>
-                        <th scope="col" class="px-6 py-3">
-                            Link
-                        </th>
-                    </tr>
-                </thead>
-                <tbody id="topRecommendation">
-                </tbody>
-            </table>
+    <!-- CAROUSEL -->
+    <div id="default-carousel" class="mb-6 relative w-9/12 mx-auto" data-carousel="static">
+        <!-- Carousel wrapper -->
+        <div class="overflow-hidden relative h-64 rounded-lg sm:h-96 2xl:h-96">
+            <!-- Item 1 -->
+            <div class="hidden duration-500 ease-in-out hover:brightness-50" data-carousel-item>
+                <img src="images/playlist.jpg"
+                    class="absolute top-1/2 left-1/2 w-full -translate-x-1/2 -translate-y-1/2" alt="...">
+                <div class="top-left hover:filter-none">Create your own Spotify Playlist</div>
+                <div class="top-left-down">Based on your preference</div>
+                <button type="button"
+                    class="btn text-white bg-green-500 hover:bg-green-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2">Create
+                    Now</button>
+            </div>
+            <!-- Item 2 -->
+            <div class="hidden duration-500 ease-in-out" data-carousel-item>
+                <img src="/docs/images/carousel/carousel-2.svg"
+                    class="block absolute top-1/2 left-1/2 w-full -translate-x-1/2 -translate-y-1/2" alt="...">
+            </div>
+            <!-- Item 3 -->
+            <div class="hidden duration-500 ease-in-out" data-carousel-item>
+                <img src="/docs/images/carousel/carousel-3.svg"
+                    class="block absolute top-1/2 left-1/2 w-full -translate-x-1/2 -translate-y-1/2" alt="...">
+            </div>
         </div>
-        <!-- Modal for recommendations -->
-        <div id="authentication-modal" tabindex="-1" aria-hidden="true"
-            class="fixed top-0 left-0 right-0 z-50 hidden w-full p-4 overflow-x-hidden overflow-y-auto md:inset-0 h-[calc(100%-1rem)] max-h-full">
-            <div class="relative w-full max-w-md max-h-full">
-                <!-- Modal content -->
-                <div class="relative bg-white rounded-lg shadow dark:bg-gray-700">
-                    <button type="button" data-modal-hide="authentication-modal"
-                        class="absolute top-3 right-2.5 text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm p-1.5 ml-auto inline-flex items-center ">
-                        <svg aria-hidden="true" class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20"
-                            xmlns="http://www.w3.org/2000/svg">
-                            <path fill-rule="evenodd"
-                                d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z"
-                                clip-rule="evenodd"></path>
-                        </svg>
-                        <span class="sr-only">Close modal</span>
+        <!-- Slider indicators -->
+        <div class="flex absolute bottom-5 left-1/2 z-30 space-x-3 -translate-x-1/2">
+            <button type="button" class="w-3 h-3 rounded-full" aria-current="false" aria-label="Slide 1"
+                data-carousel-slide-to="0"></button>
+            <button type="button" class="w-3 h-3 rounded-full" aria-current="false" aria-label="Slide 2"
+                data-carousel-slide-to="1"></button>
+            <button type="button" class="w-3 h-3 rounded-full" aria-current="false" aria-label="Slide 3"
+                data-carousel-slide-to="2"></button>
+        </div>
+        <!-- Slider controls -->
+        <button type="button"
+            class="flex absolute top-0 left-0 z-30 justify-center items-center px-4 h-full cursor-pointer group focus:outline-none"
+            data-carousel-prev>
+            <span
+                class="inline-flex justify-center items-center w-8 h-8 rounded-full sm:w-10 sm:h-10 bg-white/30 dark:bg-gray-800/30 group-hover:bg-white/50 dark:group-hover:bg-gray-800/60 group-focus:ring-4 group-focus:ring-white dark:group-focus:ring-gray-800/70 group-focus:outline-none">
+                <svg class="w-5 h-5 text-white sm:w-6 sm:h-6 dark:text-gray-800" fill="none" stroke="currentColor"
+                    viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"></path>
+                </svg>
+                <span class="hidden">Previous</span>
+            </span>
+        </button>
+        <button type="button"
+            class="flex absolute top-0 right-0 z-30 justify-center items-center px-4 h-full cursor-pointer group focus:outline-none"
+            data-carousel-next>
+            <span
+                class="inline-flex justify-center items-center w-8 h-8 rounded-full sm:w-10 sm:h-10 bg-white/30 dark:bg-gray-800/30 group-hover:bg-white/50 dark:group-hover:bg-gray-800/60 group-focus:ring-4 group-focus:ring-white dark:group-focus:ring-gray-800/70 group-focus:outline-none">
+                <svg class="w-5 h-5 text-white sm:w-6 sm:h-6 dark:text-gray-800" fill="none" stroke="currentColor"
+                    viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
+                </svg>
+                <span class="hidden">Next</span>
+            </span>
+        </button>
+    </div>
+
+    <!-- TABLE 1: TOP TRACKS -->
+    <div class="mx-12 mb-6 relative overflow-x-auto shadow-md sm:rounded-lg bg-slate-600">
+        <table class="w-full text-sm text-left text-gray-500 bg-slate-600">
+            <caption class="p-5 text-lg font-semibold text-left text-gray-900 bg-white">
+                Top Tracks
+                <p class="mt-1 text-sm font-normal text-gray-500">Browse a list of your top tracks in <span
+                        style="color: #1DB954;">Spotify</span></p>
+            </caption>
+            <thead class="text-xs text-gray-700 uppercase bg-gray-50">
+                <tr>
+                    <th scope="col" class="px-6 py-3">
+                        Rank
+                    </th>
+                    <th scope="col" class="px-6 py-3">
+                        Song
+                    </th>
+                    <th scope="col" class="px-6 py-3">
+                        Artist Name
+                    </th>
+                    <th scope="col" class="px-6 py-3">
+                        Album
+                    </th>
+                    <th scope="col" class="px-6 py-3">
+                        Album Image
+                    </th>
+                    <th scope="col" class="px-6 py-3">
+                        Link
+                    </th>
+                </tr>
+            </thead>
+            <tbody id="topTrack">
+            </tbody>
+        </table>
+    </div>
+
+    <!-- TABLE 2: RECOMMEND TRACKS -->
+    <div class="mx-12 my-6 relative overflow-x-auto shadow-md sm:rounded-lg bg-slate-600">
+        <table class="w-full text-sm text-left text-gray-500 bg-slate-600">
+            <caption class="pt-5 px-5 pb-2 text-lg font-semibold text-left text-gray-900 bg-white">
+                Top Recommendations
+                <p class="mt-1 mb-2 text-sm font-normal text-gray-500">Browse a list of your recommended trackes
+                    based on your top tracks <span style="color: #1DB954;">Spotify</span></p>
+                <span>
+                    <button type="button" onclick="getRecommendationResults()"
+                        class="text-white bg-green-500 hover:bg-green-800 focus:outline-none focus:ring-4 focus:ring-green-300 font-medium rounded-full text-sm px-5 py-2.5 text-center mr-2">
+                        <iconify-icon icon="ic:baseline-refresh" width="18" height="18"></iconify-icon>
                     </button>
-                    <div class="px-6 py-6 lg:px-8">
-                        <h3 class="mb-4 text-xl font-medium text-gray-900 dark:text-white">Save Playlist</h3>
-                        <form class="space-y-6" action="#">
-                            <div>
-                                <label for="playlist_name"
-                                    class="block mb-2 text-sm font-medium text-gray-900">Playlist
-                                    Name</label>
-                                <input name="playlist_name" id="playlist_name"
-                                    class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 "
-                                    required>
-                            </div>
-                            <div>
-                                <label for="playlist_description"
-                                    class="block mb-2 text-sm font-medium text-gray-900">Playlist Description</label>
-                                <input name="playlist_description" id="playlist_description"
-                                    class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 "
-                                    required>
-                            </div>
-                            <div>
-                                <label for="make_private"
-                                    class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Make
-                                    Private</label>
-                                <select id="make_private"
-                                    class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
-                                    <option selected value = "true">Yes</option>
-                                    <option value="false">No</option>
-                                </select>
-                            </div>
+                    <button type="button" data-modal-target="defaultModal" data-modal-toggle="defaultModal"
+                        class="text-white bg-green-500 hover:bg-green-800 focus:outline-none focus:ring-4 focus:ring-green-300 font-medium rounded-full text-sm px-5 py-2.5 text-center mr-2 mb-2">Save
+                        Playlist</button>
+                </span>
+            </caption>
+            <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 ">
+                <tr>
+                    <th scope="col" class="px-6 py-3">
+                        Rank
+                    </th>
+                    <th scope="col" class="px-6 py-3">
+                        Song
+                    </th>
+                    <th scope="col" class="px-6 py-3">
+                        Artist Name
+                    </th>
+                    <th scope="col" class="px-6 py-3">
+                        Album
+                    </th>
+                    <th scope="col" class="px-6 py-3">
+                        Album Image
+                    </th>
+                    <th scope="col" class="px-6 py-3">
+                        Link
+                    </th>
+                </tr>
+            </thead>
+            <tbody id="topRecommendation">
+            </tbody>
+        </table>
+    </div>
 
-                            <button type = "button" onclick="createRecPlaylist()"
-                                class="w-full text-white bg-green-500 hover:bg-green-800 focus:ring-4 focus:outline-none focus:ring-green-300 font-medium rounded-full  text-sm px-5 py-2.5 text-center">Save
-                                Playlist</button>
-                        </form>
-                    </div>
+    <!-- Modal for recommendations -->
+    <div id="defaultModal" tabindex="-1" aria-hidden="true"
+        class="fixed top-0 left-0 right-0 z-50 hidden w-full p-4 overflow-x-hidden overflow-y-auto md:inset-0 h-[calc(100%-1rem)] max-h-full">
+        <div class="relative w-full max-w-md max-h-full">
+            <!-- Modal content -->
+            <div class="relative bg-white rounded-lg shadow dark:bg-gray-700">
+                <button type="button" data-modal-hide="defaultModal"
+                    class="absolute top-3 right-2.5 text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm p-1.5 ml-auto inline-flex items-center ">
+                    <svg aria-hidden="true" class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20"
+                        xmlns="http://www.w3.org/2000/svg">
+                        <path fill-rule="evenodd"
+                            d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z"
+                            clip-rule="evenodd"></path>
+                    </svg>
+                    <span class="sr-only">Close modal</span>
+                </button>
+
+                <div class="px-6 py-6 lg:px-8">
+                    <h3 class="mb-4 text-xl font-medium text-gray-900 dark:text-white">Save Playlist</h3>
+                    <form class="space-y-6" action="#">
+                        <div>
+                            <label for="playlist_name" class="block mb-2 text-sm font-medium text-gray-900">Playlist
+                                Name</label>
+                            <input name="playlist_name" id="playlist_name"
+                                class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 "
+                                required>
+                        </div>
+                        <div>
+                            <label for="playlist_description"
+                                class="block mb-2 text-sm font-medium text-gray-900">Playlist Description</label>
+                            <input name="playlist_description" id="playlist_description"
+                                class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 "
+                                required>
+                        </div>
+                        <div>
+                            <label for="make_private"
+                                class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Make
+                                Private</label>
+                            <select id="make_private"
+                                class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
+                                <option selected value="true">Yes</option>
+                                <option value="false">No</option>
+                            </select>
+                        </div>
+
+                        <button type="button" onclick="createRecPlaylist()" data-modal-hide="defaultModal"
+                            class="w-full text-white bg-green-500 hover:bg-green-800 focus:ring-4 focus:outline-none focus:ring-green-300 font-medium rounded-full  text-sm px-5 py-2.5 text-center">Save
+                            Playlist</button>
+                    </form>
                 </div>
             </div>
         </div>
@@ -166,10 +262,7 @@
 
 
     <!-- flowbite -->
-    <script src="https://unpkg.com/flowbite@1.5.3/dist/flowbite.js"></script>
-    <script  src="./back.js"></script>
-    <script  src="./app.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/flowbite/1.6.5/flowbite.min.js"></script>
 </body>
 
 </html>
-
